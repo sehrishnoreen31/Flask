@@ -1,10 +1,10 @@
 from flask import Flask, redirect, url_for, request, render_template
 app = Flask(__name__)
+app.secret_key = 'anj'
 
 @app.route('/success/<name>/')
 def success(name):
     return f'Welcome {name}'
-    
 
 
 @app.route('/login/', methods=['POST', 'GET'])
