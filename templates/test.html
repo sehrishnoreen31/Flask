@@ -6,15 +6,10 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>render this {{name}}</h1>
 
-    
-    {% if marks > 40 %}
-        <p>Pass</p>
-    {% else %}
-        <p>Fail</p>
-    {% endif %}
+    <button onclick='test_file()'>Test static</button>
 
+    <script type="text/javascript" src= "{{url_for('static', filename='test.js')}}"></script>
     
     
 
