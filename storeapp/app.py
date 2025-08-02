@@ -26,7 +26,7 @@ def create_stores():
     if request_data['name'] in store_names:
         return {'message': 'store already exists'}, 409
     else:
-        new_store = {'name': request_data['name']}
+        new_store = {'name': request_data['name'], 'items': []}
         stores.append(new_store)
         return new_store, 201
         
