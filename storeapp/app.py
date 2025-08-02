@@ -46,6 +46,12 @@ def create_items(name):
         return jsonify(new_item), 201
     return {'message': 'invalid endpoint'}, 404
 
+# get specific store's items
+@app.get('/stores/<string:name>/item/')
+def get_store_items(name):
+    for store in stores:
+        if store['name'] == name:
+            return {'store_items': store}
 
 if __name__ == '__main__':
     app.run(debug=True)
