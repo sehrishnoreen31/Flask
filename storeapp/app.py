@@ -43,7 +43,7 @@ def create_items(name):
             new_item = {'name': request_item['name'], 'price': request_item['price']}
             # validate data, for later
             store['items'].append(new_item)
-        return jsonify(new_item), 201
+        return new_item, 201
     return {'message': 'invalid endpoint'}, 404
 
 # get specific store's items
