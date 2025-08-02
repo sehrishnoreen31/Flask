@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 app = Flask(__name__)
 
 stores = [
@@ -29,7 +29,23 @@ def create_stores():
         new_store = {'name': request_data['name'], 'items': []}
         stores.append(new_store)
         return new_store, 201
-        
+
+# post store items  
+@app.post('/stores/<string:name>/item/')
+def create_items(name):
+    request_item = request.get_json()
+    for store in stores:
+        if store['name'] == name:
+            store_items = [item['name'] for item in store['items']]
+            if request_item['name'] in store_items:
+                # only increase quantity, for later
+                return {'message': 'item already exists'}, 409
+            new_item = {'name': request_item['name'], 'price': request_item['price']}
+            # validate data, for later
+            store['items'].append(new_item)
+        return jsonify(new_item), 201
+    return {'message': 'invalid endpoint'}, 404
+
 
 if __name__ == '__main__':
     app.run(debug=True)
